@@ -1,0 +1,8 @@
+﻿ii = 4;
+while (ii < 900)
+{
+    ii = ii + 1 + 40;
+    if(ii==10){
+    write("Done");
+    }
+}
