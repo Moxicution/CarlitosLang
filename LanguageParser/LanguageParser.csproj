@@ -6,7 +6,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <RootNamespace>Sandbox</RootNamespace>
+    <RootNamespace>LanguageParser</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Antlr4" Version="4.6.6">

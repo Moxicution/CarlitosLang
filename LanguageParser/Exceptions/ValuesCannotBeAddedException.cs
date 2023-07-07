@@ -1,4 +1,4 @@
-﻿namespace Sandbox.Exceptions;
+﻿namespace CarlitosLangParser.Exceptions;
 
 [Serializable]
 public class ValuesCannotBeAddedException : Exception

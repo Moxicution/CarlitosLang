@@ -1,6 +1,6 @@
-﻿using Sandbox.Exceptions;
+﻿using CarlitosLangParser.Exceptions;
 
-namespace Sandbox;
+namespace LanguageParser;
 
 public class CarlitosLangVisitor : CarlitosLangBaseVisitor<object?>
 {
@@ -42,9 +42,9 @@ public class CarlitosLangVisitor : CarlitosLangBaseVisitor<object?>
 
     public override object? VisitIDExpression(CarlitosLangParser.IDExpressionContext context)
     {
-        var varName = context.ID()?.GetText();
+        var varName = context.ID().GetText();
 
-        if (varName == null || !Variables.ContainsKey(varName))
+        if (!Variables.ContainsKey(varName))
         {
             throw new VariableNotDefinedException($"Variable {varName} is not defined");
         }
@@ -179,16 +179,10 @@ public class CarlitosLangVisitor : CarlitosLangBaseVisitor<object?>
                 : IsFalse
             ;
 
-        var expression = context.expression();
-        var contextBlock = context.block();
-        var contextExpression = context.expression();
-        var contextElseIfBlock = context.elseIfBlock();
-
-        if (expression == null
-            || contextBlock == null
-            || contextExpression == null
-            || contextElseIfBlock == null)
-            throw new InvalidOperationException();
+        var expression = context?.expression();
+        var contextBlock = context?.block();
+        var contextExpression = context?.expression();
+        var contextElseIfBlock = context?.elseIfBlock();
 
         if (condition(Visit(expression)))
         {

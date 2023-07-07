@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
+using LanguageParser;
 
-namespace Sandbox;
+namespace CarlitosLangParser;
 
 public static class Program
 {
@@ -12,7 +13,7 @@ public static class Program
 
         var speakLexer = new CarlitosLangLexer(inputStream);
         var commonTokenStream = new CommonTokenStream(speakLexer);
-        var langParser = new CarlitosLangParser(commonTokenStream);
+        var langParser = new LanguageParser.CarlitosLangParser(commonTokenStream);
         
         var assignmentContext = langParser.program();
         var visitor = new CarlitosLangVisitor();
