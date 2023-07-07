@@ -73,7 +73,7 @@ public class CarlitosLangVisitor : CarlitosLangBaseVisitor<object?>
         {
             //"==" => IsEqual(left, right),
             //"!=" => NotEqual(left, right),
-            //">" => GreaterThan(left, right),
+            ">" => GreaterThan(left, right),
             "<" => LessThan(left, right),
             //">=" => GreaterThanOrEqual(left, right),
             //"<=" => LessThanOrEqual(left, right),
@@ -91,9 +91,27 @@ public class CarlitosLangVisitor : CarlitosLangBaseVisitor<object?>
         throw new NotImplementedException();
     }
 
-    private bool GreaterThan(object? left, object? right)
+    private static bool GreaterThan(object? left, object? right)
     {
-        throw new NotImplementedException();
+        switch (left)
+        {
+            case int l when right is int r:
+                return l > r;
+            case float lf when right is float rf:
+                return lf > rf;
+            case int lInt when right is float rFloat:
+                return lInt > rFloat;
+            case float lFloat when right is int rInt:
+                return lFloat > rInt;
+        }
+
+        if (left?.GetType() == null || right?.GetType() == null)
+        {
+            throw new ValuesCannotdNotBeComparedException("Cannot compare these values.");
+        }
+
+        throw new ValuesCannotdNotBeComparedException(
+            $"Cannot compare these values of type {left.GetType()} and {right.GetType()}.");
     }
 
     private static bool LessThan(object? left, object? right)
